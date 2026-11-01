@@ -218,24 +218,7 @@ Whisper DLL functions used: `whisper_full_n_segments`, `whisper_full_get_segment
 
 ---
 
-## 7. Evidence (Screenshots)
-
-Add your screenshots in an `images/` folder and link them here:
-
-1. Opened `whisper-cli.exe` in Ghidra
-2. Program sections
-3. Strings linked to `.txt` saving
-4. `FUN_140006760` (file opener) – listing and decompiler
-5. `FUN_1400095a0` (text writer)
-6. Xrefs for `output_txt`
-
-```markdown
-![Opened binary](images/01-open-binary.png)
-```
-
----
-
-## 8. Tools and Resources
+## 7. Tools and Resources
 
 - REA: https://github.com/morluto/rea
 - Ghidra 12.1.4 (binary analysis)
