@@ -230,33 +230,63 @@ Whisper DLL functions used: `whisper_full_n_segments`, `whisper_full_get_segment
 
 
 # Reconstuction of Speech-to-txt File generation Factor
-## How to Use the Reconstructed Code
+## Requirements
+- Windows 10 or 11
+- Python 3
+- CMake 3.14 or newer
+- C++ compiler (Visual Studio 2022 with "Desktop development with C++")
+- whisper.cpp source code
+- Whisper model file (`ggml-base.en.bin`)
 
-1. Open the [`Reconstrction`](./Reconstrction) folder.
-2. Make sure all four files are present:
+## Setup
+
+1. Open the [`Reconstrction`](./Reconstrction) folder. Make sure these four files are present:
    - `CMakeLists.txt`
    - `main.cpp`
    - `app.py`
    - `txt_writer.hpp`
-3. Open this folder in VS Code.
-4. Open the terminal inside the folder.
-5. Build the C++ application:
 
-```bash
-cmake -S . -B build -DWHISPER_DIR="path/to/whisper.cpp"
+2. Open this folder in VS Code, then open the terminal inside it.
+
+3. Get whisper.cpp and download the model:
+
+```powershell
+git clone https://github.com/ggml-org/whisper.cpp
+cd whisper.cpp
+models\download-ggml-model.cmd base.en
+cd ..
+```
+
+4. Build the C++ program. If `whisper.cpp` is in another place, change the path:
+
+```powershell
+cmake -S . -B build -DWHISPER_DIR="whisper.cpp"
 cmake --build build --config Release
 ```
 
+This creates `build\Release\speech_txt.exe`.
+
+5. Check that the model is in one of these places (the GUI finds it by itself):
+   - `models\ggml-base.en.bin`
+   - `ggml-base.en.bin` (same folder as `app.py`)
+   - `whisper.cpp\models\ggml-base.en.bin`
+
 6. Run the GUI:
 
-```bash
+```powershell
 python app.py
 ```
 
-7. Select your audio file and Whisper model, choose an output location, and click **Transcribe**.
+7. Click **Browse** and choose a WAV file, choose where to save the .txt file, then click **TRANSCRIBE**.
 
-The transcription will be saved as a `.txt` file.
+The transcription is saved as a `.txt` file.
 
-**Note:** You need Python, CMake, a C++ compiler, the `whisper.cpp` source folder, and a Whisper model to run the application.
+## Audio format
+Use a 16-bit PCM WAV file. To convert other audio:
+
+
+## Troubleshooting
+- **Model not found:** copy `ggml-base.en.bin` into a `models` folder next to `app.py`.
+- **Executable not found:** run the build step again.
 
 <img width="832" height="680" alt="image" src="https://github.com/user-attachments/assets/518e49dd-7899-4640-a842-8f0d6a22d868" />
