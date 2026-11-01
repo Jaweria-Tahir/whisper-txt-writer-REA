@@ -224,3 +224,39 @@ Whisper DLL functions used: `whisper_full_n_segments`, `whisper_full_get_segment
 - Ghidra 12.1.4 (binary analysis)
 - whisper.cpp: https://github.com/ggml-org/whisper.cpp
 - Claude Code / ChatGPT for understanding results and organizing the report
+
+
+---
+
+
+# Reconstuction of Speech-to-txt File generation Factor
+## How to Use the Reconstructed Code
+
+1. Open the [`Reconstrction`](./Reconstrction) folder.
+2. Make sure all four files are present:
+   - `CMakeLists.txt`
+   - `main.cpp`
+   - `app.py`
+   - `txt_writer.hpp`
+3. Open this folder in VS Code.
+4. Open the terminal inside the folder.
+5. Build the C++ application:
+
+```bash
+cmake -S . -B build -DWHISPER_DIR="path/to/whisper.cpp"
+cmake --build build --config Release
+```
+
+6. Run the GUI:
+
+```bash
+python app.py
+```
+
+7. Select your audio file and Whisper model, choose an output location, and click **Transcribe**.
+
+The transcription will be saved as a `.txt` file.
+
+**Note:** You need Python, CMake, a C++ compiler, the `whisper.cpp` source folder, and a Whisper model to run the application.
+
+<img width="832" height="680" alt="image" src="https://github.com/user-attachments/assets/518e49dd-7899-4640-a842-8f0d6a22d868" />
